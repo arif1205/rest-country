@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 // styles
 import { Container } from "./FlagContainer.styles";
 // components
 import Flag from "./Flag";
+// Navlink
+import { NavLink } from "react-router-dom";
 
 function FlagContainer({ data, theme }) {
-	const shuffledData = data.sort((a, b) => 0.5 - Math.random());
 	return (
 		<Container>
-			{shuffledData &&
-				shuffledData.map((country) => (
+			{data.map((country) => (
+				<NavLink
+					exact
+					to={`/${country.alpha3Code}`}
+					style={{ textDecoration: "none" }}>
 					<Flag
 						name={country.name}
 						region={country.region}
@@ -18,7 +22,8 @@ function FlagContainer({ data, theme }) {
 						img={country.flag}
 						key={country.alpha3Code}
 						theme={theme}></Flag>
-				))}
+				</NavLink>
+			))}
 		</Container>
 	);
 }

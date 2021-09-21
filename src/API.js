@@ -10,6 +10,11 @@ const searchAPI = {
 		const url = `${BASE_URL}${searchTerm ? "region/" + searchTerm : "all"}`;
 		return await (await fetch(url)).json();
 	},
+
+	resultByAlpha: async (code) => {
+		const url = `${BASE_URL}alpha/${code}`;
+		return await (await fetch(url)).json();
+	},
 };
 
 export default searchAPI;

@@ -12,37 +12,44 @@ function Main({ theme }) {
 	const [search, setSearch] = useState("");
 	const [region, setRegion] = useState(null);
 
-	useEffect(async () => {
-		const result = await searchAPI.resultBySearch(search);
-		if (region) {
-			const finalResult = result.filter(
-				(country) => country.region.toLowerCase() === region.toLowerCase()
-			);
-			setData(finalResult);
-		} else if (region === "") setData(result);
-		else setData(result);
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await searchAPI.resultBySearch(search);
+			if (region) {
+				const finalResult = result.filter(
+					(country) => country.region.toLowerCase() === region.toLowerCase()
+				);
+				setData(finalResult);
+			} else if (region === "") setData(result);
+			else setData(result);
+		};
+		fetchData();
 	}, [search, region]);
 
-	useEffect(async () => {
-		if (region) {
-			const result = data.filter(
-				(country) => country.region.toLowerCase() === region.toLowerCase()
-			);
-			setData(result);
-		} else if (region === "") {
-			setData(data);
-		}
+	useEffect(() => {
+		const fetchData = () => {
+			if (region) {
+				const result = data.filter(
+					(country) => country.region.toLowerCase() === region.toLowerCase()
+				);
+				setData(result);
+			} else if (region === "") {
+				setData(data);
+			}
+		};
+		fetchData();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [region, search]);
-
-	useEffect(async () => {
-		const result = await searchAPI.resultBySearch();
-		setData(result);
-	}, []);
 
 	return (
 		<MainSection theme={theme}>
 			<Container theme={theme}>
-				<Form setRegion={setRegion} region={region} setSearch={setSearch} theme={theme} />
+				<Form
+					setRegion={setRegion}
+					region={region}
+					setSearch={setSearch}
+					theme={theme}
+				/>
 				<FlagContainer data={data} theme={theme} />
 			</Container>
 		</MainSection>

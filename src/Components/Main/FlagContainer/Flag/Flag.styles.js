@@ -8,6 +8,11 @@ export const Container = styled.div`
 		props.theme === "dark" ? "var(--dark-elem)" : "var(--light-elem)"};
 	overflow: hidden;
 	border-radius: 5px;
+	transition: 0.2s;
+
+	&:hover {
+		opacity: 0.6;
+	}
 `;
 
 export const FlagImg = styled.div`

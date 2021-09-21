@@ -17,3 +17,20 @@ export const Container = styled.div`
 		margin: auto;
 	}
 `;
+
+export const NotFound = styled.div`
+	width: 100%;
+	height: 100%;
+	grid-column: 1 / span 4;
+
+	p {
+		text-align: center;
+		color: ${(props) => (props.theme === "dark" ? "#777" : "#555")};
+		font-size: 3rem;
+		font-weight: var(--font-bold);
+
+		@media screen and (max-width: 575px) {
+			font-size: 2.4rem;
+		}
+	}
+`;

@@ -1,14 +1,14 @@
 import React from "react";
 // styles
-import "./Loading.module.css";
+import { Ripple } from "./Loading.styles.js";
 
-const Loading = () => {
+const Loading = ({ theme }) => {
 	return (
 		<>
-			<div class='lds-ripple'>
+			<Ripple theme={theme}>
 				<div></div>
 				<div></div>
-			</div>
+			</Ripple>
 		</>
 	);
 };

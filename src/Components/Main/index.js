@@ -14,24 +14,25 @@ function Main({ theme, loading, setLoading }) {
 	const [region, setRegion] = useState(null);
 
 	useEffect(() => {
-		setLoading(true);
 		const fetchData = async () => {
+			setLoading(true);
 			const result = await searchAPI.resultBySearch(search);
 			if (region) {
-				const finalResult = result.filter(
-					(country) => country.region.toLowerCase() === region.toLowerCase()
-				);
+				const finalResult = Array.isArray(result)
+					? result.filter(
+							(country) => country.region.toLowerCase() === region.toLowerCase()
+					  )
+					: [];
 				setData(finalResult);
 			} else if (region === "") setData(result);
 			else setData(result);
+			setLoading(false);
 		};
 		fetchData();
-		setLoading(false);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [search, region]);
 
 	useEffect(() => {
-		setLoading(true);
 		const getData = () => {
 			if (region) {
 				const result = data.filter(
@@ -43,7 +44,6 @@ function Main({ theme, loading, setLoading }) {
 			}
 		};
 		getData();
-		setLoading(false);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [region, search]);
 
@@ -57,7 +57,11 @@ function Main({ theme, loading, setLoading }) {
 						setSearch={setSearch}
 						theme={theme}
 					/>
-					{loading ? <Loading /> : <FlagContainer data={data} theme={theme} />}
+					{loading ? (
+						<Loading theme={theme} />
+					) : (
+						<FlagContainer data={data} theme={theme} />
+					)}
 				</Container>
 			</MainSection>
 		</>

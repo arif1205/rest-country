@@ -8,7 +8,7 @@ import CountryDetails from "./CountryDetails";
 // api
 import searchAPI from "../../API";
 
-function Country({ theme }) {
+function Country({ theme, loading, setLoading }) {
 	const [data, setData] = useState({});
 
 	const id = useParams();
@@ -16,17 +16,21 @@ function Country({ theme }) {
 
 	useEffect(() => {
 		const fetchCountry = async () => {
+			setLoading(true);
 			const result = await searchAPI.resultByAlpha(alphaCode);
-			setData(result);
+			if (result.status === 400) setData({});
+			else setData(result);
+			setLoading(false);
 		};
 		fetchCountry();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [alphaCode]);
 
 	return (
 		<MainSection theme={theme}>
 			<Container theme={theme}>
 				<BackButton theme={theme} />
-				<CountryDetails theme={theme} data={data} />
+				<CountryDetails theme={theme} data={data} loading={loading} />
 			</Container>
 		</MainSection>
 	);

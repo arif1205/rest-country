@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
 	width: 100%;
 	padding: 60px 0;
+	height: 100%;
 `;
 
 export const Grid = styled.div`
@@ -97,6 +98,22 @@ export const BorderCountries = styled.div`
 				font-weight: var(--font-light-weight);
 				border-radius: 2px;
 			}
+		}
+	}
+`;
+
+export const NotFound = styled.div`
+	width: 100%;
+	height: 100%;
+
+	p {
+		text-align: center;
+		color: ${(props) => (props.theme === "dark" ? "#777" : "#555")};
+		font-size: 3rem;
+		font-weight: var(--font-bold);
+
+		@media screen and (max-width: 575px) {
+			font-size: 2.4rem;
 		}
 	}
 `;

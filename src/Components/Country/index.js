@@ -11,7 +11,7 @@ import searchAPI from "../../API";
 function Country({ theme }) {
 	const [data, setData] = useState({});
 
-	let id = useParams();
+	const id = useParams();
 	const alphaCode = id.country;
 
 	useEffect(() => {

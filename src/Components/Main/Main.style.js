@@ -8,4 +8,12 @@ export const MainSection = styled.main`
 
 export const Container = styled.div`
 	padding: 45px 80px;
+
+	@media screen and (max-width: 575px) {
+		padding: 45px 30px;
+	}
+
+	@media screen and (max-width: 350px) {
+		padding: 45px 20px;
+	}
 `;

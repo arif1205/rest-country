@@ -4,6 +4,11 @@ export const FormContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	flex-wrap: wrap;
+
+	@media screen and (max-width: 768px) {
+		gap: 20px;
+	}
 `;
 
 export const Input = styled.div`
@@ -28,6 +33,11 @@ export const Input = styled.div`
 		&:focus {
 			border: none;
 			outline: none;
+		}
+
+		@media screen and (max-width: 450px) {
+			min-width: 200px;
+			max-width: 350px;
 		}
 	}
 `;

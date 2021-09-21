@@ -8,7 +8,8 @@ export const Button = styled.button`
 		props.theme === "dark" ? "var(--dark-elem)" : "var(--light-elem)"};
 	border: none;
 	border-radius: 3px;
-	box-shadow: 0 0 2px 2px #111;
+	box-shadow: ${(props) =>
+		props.theme === "dark" ? "0 0 2px 2px #111" : "0 0 2px 2px #555"};
 	cursor: pointer;
 	transition: 0.2s;
 

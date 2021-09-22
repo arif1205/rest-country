@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // components
 import Navbar from "./Components/Navbar";
 import Main from "./Components/Main";
@@ -25,16 +25,16 @@ function App() {
 
 	return (
 		<>
-			<Navbar theme={theme} setTheme={setTheme} />
 			<Router>
-				<Switch>
-					<Route exact path='/'>
+				<Navbar theme={theme} setTheme={setTheme} />
+				<Routes>
+					<Route path='/'>
 						<Main theme={theme} loading={loading} setLoading={setLoading} />
 					</Route>
-					<Route exact path='/:country'>
+					<Route path='/:country'>
 						<Country theme={theme} loading={loading} setLoading={setLoading} />
 					</Route>
-				</Switch>
+				</Routes>
 			</Router>
 		</>
 	);

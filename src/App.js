@@ -34,6 +34,9 @@ function App() {
 					<Route path='/:country'>
 						<Country theme={theme} loading={loading} setLoading={setLoading} />
 					</Route>
+					<Route path='/*'>
+						<h1>Hello</h1>
+					</Route>
 				</Routes>
 			</Router>
 		</>
